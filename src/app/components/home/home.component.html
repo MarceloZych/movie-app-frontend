@@ -1,0 +1,41 @@
+@if (movieList$ | async; as movieObject;) {
+<div class="carousel-container">
+    <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let movie of movieObject;index as i">
+            <div class="picsum-img-wrapper">
+                <img [src]="movie.backdrops[i]" alt="Random first slide" class="carousel-img rounded" />
+                <div class="movie-details">
+                    <div>
+                        <img [src]="movie.poster" class="movie-poster-img" />
+                    </div>
+                    <!-- buttons -->
+                    <button class="btn bg-white" (click)="hanldeReviewButton(movie.imdbId)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                            class="bi bi-play-btn" viewBox="0 0 16 16">
+                            <path d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" />
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+                        </svg>
+                    </button>
+                    <div>
+                        <button type="button" class="btn btn-warning review-btn" (click)="handlePlayButton(movie.imdbId)">
+                            Reviews
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="carousel-caption">
+                <h3 class="fw-bold">{{movie.title}}</h3>
+                <p class="fw-semibold">
+                    Genres:
+                    {{movie.genres}}
+                </p>
+                <p class="fw-semibold">
+                    Release Date: {{movie.releaseDate}}
+                </p>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+</div>
+}
